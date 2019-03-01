@@ -1,0 +1,41 @@
+{
+  "settings": {
+    "index": {
+      "number_of_shards": 1,
+      "number_of_replicas": 1
+    }
+  },
+  "mappings": {
+    "user": {
+      "properties": {
+        "login": {
+          "type": "text",
+          "index": true
+        },
+        "email": {
+          "type": "text",
+          "index": true
+        },
+        "password": {
+          "type": "text",
+          "index": true
+        },
+        "firstName": {
+          "type": "text",
+          "index": true
+        },
+        "lastName": {
+          "type": "text",
+          "index": true
+        },
+        "phone": {
+          "type": "text",
+          "index": true
+        },
+        "registered": {
+          "type": "long"
+        }
+      }
+    }
+  }
+}

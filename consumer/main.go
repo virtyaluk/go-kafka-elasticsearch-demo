@@ -7,7 +7,6 @@ import (
 	"os/signal"
 	"runtime"
 	"sync"
-	"time"
 
 	"github.com/Shopify/sarama"
 	kingpin "gopkg.in/alecthomas/kingpin.v2"
@@ -44,9 +43,6 @@ func main() {
 	if *verbose {
 		sarama.Logger = logger
 	}
-
-	// Delay to wait for Elasticsearch which is super slow
-	time.Sleep(20 * time.Second)
 
 	// Spin up elasticsearch client and its BulkProcessor
 	esClient = initElasticClient()

@@ -17,7 +17,7 @@ var (
 	topic        = kingpin.Flag("topic", "Topic name").Default("Users").String()
 	maxRetry     = kingpin.Flag("maxRetry", "Retry limit").Default("5").Int()
 	verbose      = kingpin.Flag("verbose", "Whether to turn on sarama logging").Default("false").Bool()
-	msgThreshold = kingpin.Flag("msgThreshold", "Max number of messages to produce in one go").Default("100000").Int()
+	msgThreshold = kingpin.Flag("msgThreshold", "Max number of messages to produce in one go").Default("200000").Int()
 	logger       = log.New(os.Stderr, "", log.LstdFlags)
 )
 

@@ -1,10 +1,11 @@
 version: '2'
+
 services:
   zookeeper:
     image: wurstmeister/zookeeper:latest
     ports:
       - "2181:2181"
-      - 
+
   kafka:
     image: wurstmeister/kafka:latest
     ports:
@@ -17,8 +18,11 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
       - zookeeper
+
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:6.6.1
+    ports:
+      - "9200:9200"
     command: elasticsearch -Enetwork.host=_local_,_site_ -Enetwork.publish_host=_local_
     environment:
       - cluster.name=docker-cluster
@@ -32,18 +36,11 @@ services:
     mem_limit: 1g
     volumes:
       - "./esdata:/usr/share/elasticsearch/data"
-    ports:
-      - "9200:9200"
-  # producer:
-  #  build: ./producer
-  #  image: producer
-  #  container_name: producer
-  #  depends_on:
-  #   - consumer
-  consumer:
-    build: ./consumer
-    image: consumer
-    container_name: consumer
-    depends_on:
-      - elasticsearch
-      - kafka
+
+  # consumer:
+  #   build: ./consumer
+  #   image: consumer
+  #   container_name: consumer
+  #   depends_on:
+  #     - elasticsearch
+  #     - kafka

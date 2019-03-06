@@ -19,12 +19,12 @@ type elasticClient struct {
 }
 
 func initElasticClient() *elasticClient {
+	logger.Println("Initializing elasticsearch client")
+
 	// Creating elasticsearch client instance
 	ctx := context.Background()
 	esClient, err := elastic.NewClient(
 		elastic.SetURL(*esHost),
-		elastic.SetHealthcheckInterval(10*time.Second),
-		elastic.SetMaxRetries(5),
 		elastic.SetErrorLog(log.New(os.Stderr, "ELASTIC", log.LstdFlags)),
 		elastic.SetInfoLog(logger))
 
